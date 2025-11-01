@@ -1,59 +1,56 @@
-# 🏠 Airbnb Price Prediction — GPU-Accelerated XGBoost Model
-
-This project builds an **end-to-end machine learning pipeline** to predict Airbnb listing prices across multiple U.S. cities.  
-It focuses on data cleaning, feature preprocessing, and a GPU-optimized XGBoost model for fast and accurate regression.
+🏠 **Airbnb Price Prediction — GPU-Accelerated XGBoost Model**  
+This project builds an end-to-end machine learning pipeline to predict Airbnb listing prices across multiple U.S. cities. It focuses on data cleaning, feature preprocessing, and a GPU-optimized XGBoost model for fast and accurate regression.
 
 ---
 
-## 🚀 Key Features
+### 🚀 Key Features  
+**Data Cleaning & Filtering**  
+- Removed invalid or extreme prices, handled missing values, and normalized categorical data.  
+- Filtered out unrealistic values (kept \$10–\$5000) to reduce outliers.  
+- Merged low-frequency cities into a single “Other” category for efficiency.  
 
-- **Data Cleaning & Filtering**: Removed invalid or extreme prices, handled missing values, and normalized text/categorical data.  
-- **Feature Engineering**:  
-  - Scaled numeric features using `StandardScaler`  
-  - Encoded categorical variables (`room_type`, `city`) via `OneHotEncoder`  
-  - Applied `log1p` transform on target (`price_log`) to stabilize variance  
-- **Modeling**:  
-  - Trained an **XGBoost Regressor** with GPU acceleration (`gpu_hist`)  
-  - Used **Early Stopping** to prevent overfitting and optimize iterations  
-- **Evaluation**:  
-  - Metrics: `RMSE`, `MAE`, `R²`  
-  - Visualizations: *Actual vs Predicted Prices* and *Residual Distribution*  
-- **Performance**:  
-  - RMSE ≈ **234.36**  
-  - MAE ≈ **87.33**  
-  - R² ≈ **0.332**
+**Feature Engineering**  
+- Scaled numeric features with `StandardScaler`.  
+- Encoded categorical variables (`room_type`, `city`) via one-hot encoding.  
+- Applied `log1p` transform on target (`price_log`) to stabilize variance.  
+
+**Modeling**  
+- Trained an **XGBoost Regressor** using GPU acceleration (`gpu_hist`).  
+- Implemented early stopping to prevent overfitting and optimize iteration count.  
+- Tuned depth, learning rate, and sampling ratios for balanced performance.  
+
+**Evaluation**  
+- Metrics: **RMSE**, **MAE**, **R²**  
+- Visualizations: *Actual vs Predicted Prices* and *Residual Distribution*  
 
 ---
 
-## 🧠 Tech Stack
+### 📊 Results Summary  
+| Metric | Value | Description |  
+|--------:|------:|:------------|  
+| RMSE | **234.36** | Root Mean Squared Error — lower is better |  
+| MAE | **87.33** | Mean Absolute Error in predicted prices |  
+| R² | **0.332** | Coefficient of determination (model fit) |  
 
-- **Language:** Python (3.11+)  
+---
+
+### 🧠 Tech Stack  
+- **Language:** Python (3.10+)  
 - **Libraries:** XGBoost, Scikit-learn, Pandas, NumPy, Seaborn, Matplotlib  
-- **Hardware:** NVIDIA GPU (CUDA-accelerated training)
+- **Hardware:** NVIDIA GPU (CUDA-accelerated training)  
 
 ---
 
-## 📊 Results Summary
-
-| Metric | Value | Description |
-|--------|--------|-------------|
-| RMSE | 234.36 | Root Mean Squared Error — lower is better |
-| MAE | 87.33 | Mean Absolute Error in predicted prices |
-| R² | 0.332 | Coefficient of determination (model fit) |
+### 🖼️ Visualizations  
+- **Predicted vs Actual Prices:** demonstrates alignment between predictions and real values.  
+- **Residual Histogram:** confirms balanced and unbiased model errors.  
 
 ---
 
-## 🖼️ Sample Visualizations
+### 💾 Output  
+Final predictions are saved to **Airbnb_XGB_Results.csv**, containing:  
+`ActualPrice` | `PredictedPrice`  
 
-- **Predicted vs Actual Prices** → shows overall prediction accuracy  
-- **Residual Histogram** → confirms balanced and unbiased model errors  
-
----
-
-## 💾 Output
-
-The final predictions are saved in **`Airbnb_XGB_Results.csv`**, containing the columns:  
-`ActualPrice` and `PredictedPrice`.
 
 ---
 
